@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Copy to clipboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<style type="text/css">
+		textarea {
+			resize: none;
+		}
+	</style>
+	<script src="copy.js"></script>
+</head>
+<body>
+
+<div class="container">
+	<h1>
+		Copy to clipboard
+	</h1>
+	<hr />
+
+	<div class="row">
+		<div class="col">
+			<form>
+				<div class="form-group">
+					<label for="copyboard">Type some text to copy:</label><br>
+					<textarea id="copyboard" placeholder="Type something" class="form-control" rows="10"></textarea>
+				</div>
+
+				<div class="form-group">
+					<button type="button" class="js-copy-to-clipboard btn btn-primary">
+						Copy to clipboard
+					</button>
+				</div>
+			</form>
+		</div>
+		<div class="col">
+			<label for="pasteboard">Use this textarea to check clipboard:</label><br>
+			<textarea id="pasteboard" placeholder="Paste here" class="form-control" rows="10"></textarea>
+		</div>
+	</div>
+</div>
+
+<script>
+	(function() {
+		document.querySelector('.js-copy-to-clipboard').addEventListener('click', () => {
+			let textToCopy = document.getElementById('copyboard').value;
+			textToCopy = textToCopy.replace(/\n/g, '\r');
+			copy(textToCopy);
+		});
+	}());
+</script>
+</body>
+</html>
